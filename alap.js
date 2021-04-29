@@ -1,39 +1,27 @@
-function kereses(szam){
 
-    fetch("https://covid.ourworldindata.org/data/owid-covid-data.json")
-    .then(x => x.json())
-    .then(y => megjelenit(y,szam));
-
+fetch("https://restcountries.eu/rest/v2/all")
+.then(x => x.json())
+.then(y => megjelenit(y));
 
 
-}
-function megjelenit(adatok,szam){
+
+function megjelenit(adatok){
 
     console.log(adatok);
-
-    var orszag=document.getElementById("orszag_"+szam).value ;
-    var datum=document.getElementById("datum").value ;
-
     var sz='';
-    sz+='<h2>'+adatok[orszag].location+'</h2>';
+    for (elem of adatok){
+        sz+='<div class="col-md-4 col-sm-12 keret">';
+        sz+='<h4>'+elem.name+'</h4>';
+        sz+='<img src="'+elem.flag+'" class="kiskep">';
+        sz+='<p>Népesség: '+elem.population+'</p>';
+        sz+='<p>Főváros: '+elem.capital+'</p>';
+        
 
-    for (elem of adatok[orszag].data){
-         if  ( elem.date==datum)
-         {
-             sz+='<p>Összes eset millió főre: '+elem.total_cases_per_million+'</p>';
-             sz+='<p>Új eset millió főre: '+elem.new_cases_per_million+'</p>';
-             sz+='<p>Összes halálozás millió főre: '+elem.total_deaths_per_million+'</p>';
-             sz+='<p>Új halálozás millió főre: '+elem.new_deaths_per_million+'</p>';
-
-             
-             
-             
-         }
+        sz+='</div>';
     }
-    
-    
-    
-    document.getElementById("talalat_"+szam).innerHTML=sz;
- 
+
+    document.getElementById("talalat").innerHTML=sz;
 
 }
+
+
