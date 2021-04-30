@@ -1,38 +1,71 @@
+
+function nevnap_datum(){
+
+    var datum=document.getElementById("bevitel1").value ;
+
+    fetch("https://api.nevnapok.eu/nap/"+datum)
+    .then(x => x.json())
+    .then(y => megjelenit1(y,datum));
+    
+}
+
+
+function megjelenit1(adatok,datum){
+    console.log(adatok[datum]);
+    var sz='';
+    for (elem of adatok[datum]){
+        sz+='<p class="arnyekolt">'+elem+'</p>';
+    }
+    document.getElementById("nevnap1").innerHTML=sz;
+}
+
+
+function datum_nevnap(){
+
+    var nev=document.getElementById("bevitel2").value ;
+
+    fetch("https://api.nevnapok.eu/nev/"+nev)
+    .then(x => x.json())
+    .then(y => megjelenit2(y,nev));
+    
+}
+
+
+function megjelenit2(adatok,nev){
+    console.log(adatok[nev]);
+    var sz='';
+    for (elem of adatok[nev]){
+        sz+='<p class="arnyekolt">'+elem+'</p>';
+    }
+    document.getElementById("nevnap2").innerHTML=sz;
+}
+
+
+
 var adatok0=[];
-
-
-fetch("https://restcountries.eu/rest/v2/all")
+var veletlen=-1;
+fetch("https://official-joke-api.appspot.com/jokes/ten")
 .then(x => x.json())
-.then(y => megjelenit(y));
+.then(y => tarol(y));
 
-
-
-function megjelenit(adatok){
-
+function tarol(adatok){
     console.log(adatok);
     adatok0=adatok;
-    var sz='';
-    var db=0;
-    for (elem of adatok){
-      
-        sz+='<option value="'+db+'"   >'+elem.name+'</option>';
-        db++;
+}
 
-       
-    }
+function sorsol(){
+    veletlen=Math.floor(Math.random() * adatok0.length);
+    var sz='<h4>'+adatok0[veletlen].setup+'</h4>'; 
+    var s='<h4>'+adatok0[veletlen].punchline+'</h4>';
 
-    document.getElementById("lenyilo").innerHTML=sz;
+    document.getElementById("vicc").innerHTML=sz;
+    document.getElementById("poen").innerHTML=s;
+
 
 }
 
-function valtoztat(){
-    var orszagsorszam=document.getElementById("lenyilo").value ;
-    var sz='';
-    
-    sz+='<h4>'+adatok0[orszagsorszam].name+'</h4>';
-        sz+='<img src="'+adatok0[orszagsorszam].flag+'" class="nagykep">';
-        sz+='<hr>';
-        sz+='<p>Népesség: '+adatok0[orszagsorszam].population+' fő </p>';
-        sz+='<p>Főváros: '+adatok0[orszagsorszam].capital+'</p>';
-    document.getElementById("eredmeny").innerHTML=sz;
-}
+
+
+
+
+

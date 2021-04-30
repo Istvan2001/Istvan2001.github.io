@@ -1,26 +1,30 @@
-.kiskep{
-    width: 150px;
-}
-.nagykep{
-    width: 50%;
-}
-.keret{
-    border: 1px solid black;
-    box-shadow: 1px 1px black;
-    text-align: center;
-    
-}
-#lenyilo{
-    width: 50%;
-    margin: 15px;
-}
-.container{
+header{
+    background-image: url("hatter.jpg");
+    height: 150px;
     text-align: center;
 }
-button{
-    margin:10px;
+.kek{
+    color: blue;
+    font-weight: bold;
+    margin: 10px;
 }
-.kep
+.arnyekolt{
+    color:blueviolet;
+    box-shadow: 2px 2px black;
+    margin: 5px;
+    padding: 2px;
+}
+.lila
 {
-    width: 500px;
+    background-color:blueviolet ;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.yellow
+{
+    font-style: italic;
+    background-color: yellow;
+}
+.vicc
+{
+    text-align: center;
 }
